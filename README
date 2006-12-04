@@ -63,7 +63,7 @@ Elemental has three basic usages:
       <%= p "some content", :id => dom_id(@object) %>
       
   3. Content tags with a block argument:
-      <% form :method => "post" do %>
+      <% div :class => "some-class" do %>
         ...
       <% end %>
 
@@ -124,6 +124,9 @@ Options are converted to regular html attributes. None are filtered, so you can 
     <%= span :id => "some_id", :bogus_attribute => "some_value"%>
       generates:
     <span id="some_id" bogus_attribute="some_value"></span>
+    
+=== Omitted Tags
+Rails' ActionView::Helpers already defines _form_, _select_, and _input_, so these are omitted from Elemental.
 
 === Motivation
 Afer using Markaby a bit, I decided there were situations where I wanted a Markaby or Builder-type syntax within rhtml's context. I had been using _content_tag_ quite a bit for convenience, but wanted more _legible_ and _concise_ code, espcially for loops.
