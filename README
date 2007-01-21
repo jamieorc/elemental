@@ -131,6 +131,7 @@ Rails' ActionView::Helpers already defines _form_, _select_, and _input_, so the
 === Motivation
 Afer using Markaby a bit, I decided there were situations where I wanted a Markaby or Builder-type syntax within rhtml's context. I had been using _content_tag_ quite a bit for convenience, but wanted more _legible_ and _concise_ code, espcially for loops.
 
-
+=== Acknowledgments
+_why for Markaby and its list of XHTML and XHTML Transitional tag lists, which I used. 
 
 
