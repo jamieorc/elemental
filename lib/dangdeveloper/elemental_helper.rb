@@ -30,7 +30,7 @@ module DangDeveloper
     end
     def content_tag_block(tag_name, *args, &block)
       options = args.first.is_a?(Hash) ? args.shift : {}
-      concat content_tag(tag_name, capture(&block), options), block.binding
+      concat content_tag(tag_name, capture(&block), options)
     end
 
     def tag_without_block(tag_name, *args)
