@@ -2,8 +2,11 @@ RAILS_ENV = 'test'
 require File.expand_path(File.join(File.dirname(__FILE__), '../../../../config/environment.rb'))
 require 'action_controller/test_process'
 require 'action_view/helpers/tag_helper'
+require 'action_view/test_case'
 
-class ElementalHelperTest < Test::Unit::TestCase
+require 'test/unit'
+
+class ElementalHelperTest < ActionView::TestCase
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::CaptureHelper
@@ -98,38 +101,39 @@ class ElementalHelperTest < Test::Unit::TestCase
   # Content-tags: block syntax
   def test_creates_content_tags_with_block
     DangDeveloper::ElementalHelper.xhtml_content_tags.each do |element|
-      _erbout = ''
+#       self.output_buffer = ''
+      self.output_buffer = ''
       eval("#{element} {}")
       expected = "<#{element}></#{element}>"
-      assert_dom_equal expected, _erbout
+      assert_dom_equal expected, output_buffer
     end    
   end
 
   def test_creates_content_tags_with_block_and_options
     DangDeveloper::ElementalHelper.xhtml_content_tags.each do |element|
-      _erbout = ''
+      self.output_buffer = ''
       eval("#{element}(@options) {}")
       expected = "<#{element} #{tag_options(@options.stringify_keys)}></#{element}>"
-      assert_dom_equal expected, _erbout
+      assert_dom_equal expected, output_buffer
     end
   end
 
   def test_creates_nested_content_tags_with_block
     DangDeveloper::ElementalHelper.xhtml_content_tags.each do |element|
-      _erbout = ''
+      self.output_buffer = ''
       eval("#{element} do em {} end")
       expected = "<#{element}><em></em></#{element}>"
-      assert_dom_equal expected, _erbout
+      assert_dom_equal expected, output_buffer
     end    
   end
   
 
   def test_creates_nested_content_tags_with_block_and_options
     DangDeveloper::ElementalHelper.xhtml_content_tags.each do |element|
-      _erbout = ''
+      self.output_buffer = ''
       eval("#{element}(@options) do em(@options) {} end")
       expected = "<#{element} #{tag_options(@options.stringify_keys)}><em #{tag_options(@options.stringify_keys)}></em></#{element}>"
-      assert_dom_equal expected, _erbout
+      assert_dom_equal expected, output_buffer
     end    
   end
   
