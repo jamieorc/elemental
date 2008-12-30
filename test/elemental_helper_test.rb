@@ -4,6 +4,8 @@ require 'action_controller/test_process'
 require 'action_view/helpers/tag_helper'
 require 'action_view/test_case'
 
+require 'test/unit'
+
 class ElementalHelperTest < ActionView::TestCase
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::TagHelper
