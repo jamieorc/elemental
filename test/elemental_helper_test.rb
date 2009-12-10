@@ -18,9 +18,9 @@ class ElementalHelperTest < ActionView::TestCase
     @options = {:id => "some_id", :class => "css_class", :onClick => "alert('dang')"}
   end
   
-  # Self-closing and content tags without content:
+  # Self-closing tags:
   def test_creates_self_closing_tags
-    DangDeveloper::ElementalHelper.xhtml_content_tags.each do |element|
+    DangDeveloper::ElementalHelper.self_closing_tags.each do |element|
       result = eval("#{element}")
       expected = "<#{element}/>"
       assert_dom_equal expected, result
@@ -33,7 +33,7 @@ class ElementalHelperTest < ActionView::TestCase
   end
   
   def test_creates_self_closing_tags_with_options
-    DangDeveloper::ElementalHelper.xhtml_content_tags.each do |element|
+    DangDeveloper::ElementalHelper.self_closing_tags.each do |element|
       result = eval("#{element}(@options)")
       expected = "<#{element} #{tag_options(@options.stringify_keys)}/>"
       assert_dom_equal expected, result
@@ -62,6 +62,14 @@ class ElementalHelperTest < ActionView::TestCase
     DangDeveloper::ElementalHelper.xhtml_content_tags.each do |element|
       result = eval("#{element} @content")
       expected = "<#{element}>#{@content}</#{element}>"
+      assert_dom_equal expected, result
+    end    
+  end
+  
+  def test_creates_content_tags_with_no_content
+    DangDeveloper::ElementalHelper.xhtml_content_tags.each do |element|
+      result = eval("#{element}")
+      expected = "<#{element}></#{element}>"
       assert_dom_equal expected, result
     end    
   end

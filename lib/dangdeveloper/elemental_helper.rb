@@ -40,10 +40,10 @@ module DangDeveloper
       # still deciding syntax...
       # content = options.delete "content" if options.has_key? "content"
 
-      if content
-        content_tag(tag_name, content, options)
-      else
+      if SELF_CLOSING_TAGS.include?(tag_name.to_s)
         tag(tag_name, options, false)
+      else
+        content_tag(tag_name, content, options)
       end
     end
   end
