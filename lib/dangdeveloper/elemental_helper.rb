@@ -10,7 +10,8 @@ module DangDeveloper
       textarea  fieldset  legend  button  table  caption  colgroup  col 
       thead  tfoot  tbody  tr  th  td  h1  h2  h3  h4  h5  h6 
     }
-    HMTL5_TAGS = %w{
+    # From http://dev.w3.org/html5/spec-author-view/index.html#elements-1 on 2011-10-05
+    HTML5_TAGS = %w{
       a abbr address area article aside audio 
       b base bdi bdo blockquote body br button 
       canvas caption cite code col colgroup command 
